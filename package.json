@@ -1,0 +1,51 @@
+{
+  "name": "ts-starter",
+  "author": "Logan Powell",
+  "license": "MIT",
+  "version": "0.2.67",
+  "description": "typescript configuration and starter project",
+  "main": "./lib/index.js",
+  "type": "module",
+  "types": "./lib/index.d.ts",
+  "repository": "https://github.com/loganpowell/ts-starter",
+  "homepage": "https://github.com/loganpowell/ts-starter",
+  "scripts": {
+    "typewatch": "tsc --project tsconfig.json",
+    "types": "tsc --project tsconfig.build.json",
+    "madge": "madge --circular lib/",
+    "jsdoc": "jsdoc -c jsdoc/jsdoc.json --verbose --debug",
+    "pages": "gh-pages -d @-0/spool",
+    "docs": "npm run types && npm run jsdoc",
+    "patch": "npm version patch && npm run docs && npm run pages && npm publish",
+    "tests": "npm run types && npm run madge && jest",
+    "postgit": "git push origin master && npm run patch",
+    "ncu": "ncu -u && npm i",
+    "git": "npm run ncu && git add . && git commit -m"
+  },
+  "keywords": [
+    "typescript",
+    "starter"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
+    "better-docs": "^1.4.7",
+    "cross-env": "^7.0.0",
+    "eslint": "^6.8.0",
+    "gh-pages": "^2.2.0",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "printWidth": 100,
+    "endOfLine": "lf",
+    "tabWidth": 2,
+    "semi": false
+  }
+}
