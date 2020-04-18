@@ -1,6 +1,25 @@
 ## Instructions
 
 1. Change project name in `package.json`
+
+```diff
+{
+-  "name": "ts-starter",
++  "name": "<whatevs>",
+-  "description": "typescript configuration and starter project",
++  "description": "<also whatevs...>",
+...
+-  "repository": "https://github.com/loganpowell/ts-starter",
++  "repository": "https://github.com/<profile>/<repo>",
+-  "homepage": "https://github.com/loganpowell/ts-starter",
++  "homepage": "https://github.com/<profile>/<repo>",
+-  "scripts": {
+-    "pages": "gh-pages -d @-0/spool",
+# referenceTitle from ./jsdoc/jsdoc.json:
++    "pages": "gh-pages -d <referenceTitle>",
+    ...
+```
+
 2. Update `./jsdoc/jsdoc.json`
 
 ```diff

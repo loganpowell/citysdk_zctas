@@ -10,12 +10,12 @@
   "repository": "https://github.com/loganpowell/ts-starter",
   "homepage": "https://github.com/loganpowell/ts-starter",
   "scripts": {
+    "pages": "gh-pages -d @-0/spool",
     "clean": "rm -rf ./lib",
     "typewatch": "tsc --project tsconfig.json",
     "types": "tsc --project tsconfig.build.json",
     "madge": "madge --circular lib/",
     "jsdoc": "jsdoc -c jsdoc/jsdoc.json --verbose --debug",
-    "pages": "gh-pages -d @-0/spool",
     "docs": "npm run types && npm run jsdoc",
     "patch": "npm version patch && npm run docs && npm run pages && npm publish",
     "tests": "concurrently \"npm run typewatch\" \"npm run madge && jest --watchAll\"",
