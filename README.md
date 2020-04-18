@@ -19,3 +19,24 @@
 ```
 
 3. `npm i`
+
+
+## Dependencies
+
+01. `concurrently`: concurrently runs 
+    - typescript compiler `watch` mode
+    - jest tests
+    - run with `npm run tests`
+02. compiled from/to esm modules throughout (uses typescript
+    compiler)
+03. enables esm modules for tests (uses `babel-jest`)
+04. integrated with jsdoc template from [better-docs]
+
+
+## Customizing
+
+If you don't need one of the features above, just delete its
+directory and any related scripts from `package.json`
+
+
+[better-docs]: https://github.com/SoftwareBrothers/better-docs

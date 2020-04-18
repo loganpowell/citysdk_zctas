@@ -8,3 +8,4 @@ tests/
 .*
 **/**.config.js
 **/**.json
+**/**.test.js

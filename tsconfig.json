@@ -9,9 +9,10 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "downlevelIteration": true,
-    "watch": true,
     "skipLibCheck": true,
     "removeComments": true,
-    "moduleResolution": "node"
-  }
+    "moduleResolution": "node",
+    "watch": true
+  },
+  "exclude": ["**/*.spec.js", "**/*.test.js", "node_modules", "lib"]
 }
