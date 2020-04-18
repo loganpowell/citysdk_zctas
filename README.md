@@ -31,6 +31,7 @@
     compiler)
 03. enables esm modules for tests (uses `babel-jest`)
 04. integrated with jsdoc template from [better-docs]
+05. checks for circular dependencies in `lib` output using `madge`
 
 
 ## Customizing
