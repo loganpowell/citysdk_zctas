@@ -40,6 +40,15 @@
 3. `npm i`
 
 
+## Tests
+
+- Unit tests should live next to (in the same directory as)
+  the functions that they test.
+- integration tests (tests that connect unit tests together
+  that don't have an associated function definition) should
+  live in the `/tests` directory
+
+
 ## Dependencies
 
 01. `concurrently`: concurrently runs 

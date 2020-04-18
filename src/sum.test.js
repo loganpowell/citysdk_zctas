@@ -1,3 +1,5 @@
+// keep unit tests close to the functions they test (i.e.,
+// in the same directory)
 import { sum, product, bloop, bleep, blop } from "../lib/sum"
 
 test("should ", () => {
