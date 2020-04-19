@@ -12,7 +12,8 @@
     "skipLibCheck": true,
     "removeComments": true,
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "watch": true
   },
-  "exclude": ["**/*.spec.js", "**/*.test.js", "node_modules", "lib"]
+  "exclude": ["**/*.test.ts", "**/*.test.js", "node_modules", "lib", "misc"]
 }

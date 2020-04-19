@@ -1,6 +1,6 @@
 // keep unit tests close to the functions they test (i.e.,
 // in the same directory)
-import { sum, product, bloop, bleep, blop } from "../lib/sum"
+import { sum, product, bloop, bleep, blop } from "./sum"
 
 test("should ", () => {
   expect(sum(1, 2)).toBe(3)
