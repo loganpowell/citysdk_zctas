@@ -13,6 +13,7 @@
     "removeComments": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+    "allowJs": true,
     "watch": true
   },
   "exclude": ["**/*.test.ts", "**/*.test.js", "node_modules", "lib", "misc"]
