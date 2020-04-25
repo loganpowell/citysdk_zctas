@@ -4,8 +4,8 @@
     "module": "ES6",
     "lib": ["ES2017", "ES7", "ES6", "DOM"],
     "declaration": true,
-    "rootDir": "./src",
-    "outDir": "./lib",
+    "rootDir": "src",
+    "outDir": "lib",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "downlevelIteration": true,
@@ -16,5 +16,6 @@
     "allowJs": true,
     "watch": true
   },
+  "include": ["src"],
   "exclude": ["**/*.test.ts", "**/*.test.js", "node_modules", "lib", "misc"]
 }
