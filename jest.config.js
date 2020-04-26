@@ -6,7 +6,7 @@ module.exports = {
     // registers babel.config.js with jest
     "^.+\\.js$": "babel-jest",
   },
-  // explicitly include any node libs using ESM modules
+  // explicitly `(` + include + `)` any libs using ESM modules
   transformIgnorePatterns: ["node_modules/?!(@-0)"],
 }
 

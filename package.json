@@ -12,13 +12,13 @@
   "scripts": {
     "pages": "gh-pages -d @-0/spool",
     "clean": "rm -rf ./lib",
+    "madge": "madge --circular lib/",
     "typewatch": "tsc --project tsconfig.json",
     "types": "tsc --project tsconfig.build.json",
-    "madge": "madge --circular lib/",
     "jsdoc": "jsdoc -c jsdoc/jsdoc.json --verbose --debug",
     "docs": "npm run types && npm run jsdoc",
     "patch": "npm version patch && npm run docs && npm run pages && npm publish",
-    "tests": "concurrently \"npm run typewatch\" \"npm run madge && jest --watchAll\"",
+    "tests": "npm run madge && concurrently \"npm run typewatch\" \"jest --watchAll\"",
     "postgit": "git push origin master && npm run patch",
     "ncu": "ncu -u && npm i && npm audit fix",
     "git": "npm run ncu && git add . && git commit -m"
