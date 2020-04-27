@@ -17,5 +17,13 @@
     "watch": true
   },
   "include": ["src"],
-  "exclude": ["**/*.test.ts", "**/*.test.js", "node_modules", "lib", "misc"]
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test.js",
+    "**/*.repl.ts",
+    "**/*.repl.js",
+    "node_modules",
+    "lib",
+    "src/misc"
+  ]
 }
