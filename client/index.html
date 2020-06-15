@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <!-- for PWA address bar -->
+        <meta name="theme-color" content="#317EFB" />
+
+        <!-- <meta property="og:url" content=""> -->
+        <meta property="og:type" content="default" />
+        <meta property="og:description" content="default" />
+        <meta property="og:title" content="default" />
+        <meta property="og:image" content="" />
+        <meta property="og:image:width" content="1600" />
+        <meta property="og:image:height" content="900" />
+        <title>Just an ol' title</title>
+        <!-- <link href="https://fonts.googleapis.com/css?family=Michroma&display=swap" rel="stylesheet"> -->
+        <style>
+            * {
+                /* font-family: Michroma; */
+                /*Reset's every elements apperance*/
+                background: none repeat scroll 0 0 transparent;
+                border: none;
+                border-spacing: 0;
+                list-style: none outside none;
+                margin: 0;
+                padding: 0;
+                text-align: left;
+                text-decoration: none;
+                text-indent: 0;
+                /* fix z-index for FLIP els */
+                box-sizing: border-box;
+                position: relative;
+            }
+
+            /* SCROLLBAR REMOVAL */
+            html {
+                -ms-overflow-style: none;
+                /* Internet Explorer 10+ */
+                scrollbar-width: none;
+                /* Firefox */
+            }
+
+            html::-webkit-scrollbar {
+                display: none;
+                /* Safari and Chrome */
+            }
+
+            a[active] {
+                color: coral;
+            }
+        </style>
+        <title>Test</title>
+    </head>
+
+    <body>
+        <div id="app"></div>
+
+        <script src="../lib/index.js"></script>
+    </body>
+</html>
