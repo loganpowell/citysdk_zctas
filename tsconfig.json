@@ -1,29 +1,29 @@
 {
-  "compilerOptions": {
-    "target": "ES6",
-    "module": "ES6",
-    "lib": ["ES2017", "ES7", "ES6", "DOM"],
-    "declaration": true,
-    "rootDir": "src",
-    "outDir": "lib",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "downlevelIteration": true,
-    "skipLibCheck": true,
-    "removeComments": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "allowJs": true,
-    "watch": true
-  },
-  "include": ["src"],
-  "exclude": [
-    "**/*.test.ts",
-    "**/*.test.js",
-    "**/*.repl.ts",
-    "**/*.repl.js",
-    "node_modules",
-    "lib",
-    "src/misc"
-  ]
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "ES6",
+        "lib": ["ES2017", "ES7", "ES6", "DOM"],
+        "declaration": true,
+        "rootDir": "src",
+        "outDir": "lib",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "downlevelIteration": true,
+        "skipLibCheck": true,
+        "removeComments": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "allowJs": true,
+        "watch": true
+    },
+    "include": ["src"],
+    "exclude": [
+        "**/*.test.ts",
+        "**/*.test.js",
+        "**/*.repl.ts",
+        "**/*.repl.js",
+        "node_modules",
+        "lib",
+        "src/misc"
+    ]
 }

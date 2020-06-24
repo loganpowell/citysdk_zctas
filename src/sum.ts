@@ -5,7 +5,7 @@
  * //=> 3
  */
 export const sum = (a, b) => {
-  return a + b
+    return a + b
 }
 
 export const product = (a, b) => a * b
