@@ -22,13 +22,10 @@
         "postgit": "git push origin master && npm run patch",
         "ncu": "ncu -u && npm i && npm audit fix",
         "git": "npm run ncu && git add . && git commit -m",
-        "client:build": "npm run clean && cross-env NODE_ENV=production parcel build client/index.html -d dist --no-source-maps --no-cache --public-url ./",
-        "client:start": "concurrently \"npm run typewatch\" \"parcel client/index.html --global md -p 8080 --open -d dist watch\""
+        "build": "npm run clean && cross-env NODE_ENV=production parcel build client/index.html -d dist --no-source-maps --no-cache --public-url ./",
+        "dev": "concurrently \"npm run typewatch\" \"parcel client/index.html --global md -p 8080 --open -d dist watch\""
     },
-    "keywords": [
-        "typescript",
-        "starter"
-    ],
+    "keywords": [],
     "publishConfig": {
         "access": "public"
     },
@@ -50,6 +47,9 @@
         "prettier": "^2.0.5",
         "ts-jest": "^26.1.1"
     },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
     "prettier": {
         "singleQuote": false,
         "printWidth": 100,
