@@ -6,7 +6,7 @@
         "declaration": true,
         "importHelpers": true,
         "noUnusedParameters": true,
-        "noUnusedLocals": true,
+        "noUnusedLocals": false,
         "rootDir": "src",
         "outDir": "lib",
         "resolveJsonModule": true,
