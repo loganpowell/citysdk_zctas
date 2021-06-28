@@ -19,7 +19,7 @@
         "allowJs": true,
         "watch": true
     },
-    "include": ["src", "tests/sum.repl.ts", "tests/sum.test.ts"],
+    "include": ["src"],
     "exclude": [
         "**/*.test.ts",
         "**/*.test.js",
