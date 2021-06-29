@@ -6,7 +6,7 @@
         "declaration": true,
         "importHelpers": true,
         "noUnusedParameters": true,
-        "noUnusedLocals": true,
+        "noUnusedLocals": false,
         "rootDir": "src",
         "outDir": "lib",
         "resolveJsonModule": true,
@@ -19,7 +19,7 @@
         "allowJs": true,
         "watch": true
     },
-    "include": ["src", "tests/sum.repl.ts", "tests/sum.test.ts"],
+    "include": ["src"],
     "exclude": [
         "**/*.test.ts",
         "**/*.test.js",

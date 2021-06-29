@@ -13,5 +13,5 @@ These are required to be installed globally for `scripts`:
 
 ## Last Compilation Environment
 
-- Node Version: 12.20.1/x64
+- Node Version: node/14.16.0/x64 (Fermium)
 - OS: Windows 10
