@@ -21,10 +21,6 @@
     },
     "include": ["src"],
     "exclude": [
-        "**/*.test.ts",
-        "**/*.test.js",
-        "**/*.repl.ts",
-        "**/*.repl.js",
         "node_modules",
         "lib",
         "src/misc"
