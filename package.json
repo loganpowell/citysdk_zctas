@@ -1,5 +1,5 @@
 {
-    "name": "ts-starter",
+    "name": "citysdk_zctas",
     "author": "Logan Powell",
     "license": "MIT",
     "version": "0.2.67",
@@ -7,8 +7,8 @@
     "type": "module",
     "main": "./lib/index.js",
     "types": "./lib/index.d.ts",
-    "repository": "https://github.com/loganpowell/ts-starter",
-    "homepage": "https://github.com/loganpowell/ts-starter",
+    "repository": "https://github.com/loganpowell/citysdk_zctas",
+    "homepage": "https://github.com/loganpowell/citysdk_zctas",
     "scripts": {
         "pages": "npm run types && npm run jsdoc",
         "clean": "rm -rf ./lib & rm -rf ./dist &  rm -rf .cache",
@@ -22,15 +22,23 @@
         "postgit": "git push origin master && npm run patch",
         "ncu": "ncu -u && npm i && npm audit fix",
         "git": "npm run ncu && git add . && git commit -m",
-        "build": "npm run clean && cross-env NODE_ENV=production parcel build client/index.html -d dist --no-source-maps --no-cache --public-url ./",
-        "dev": "concurrently \"npm run typewatch\" \"parcel client/index.html --global md -p 8080 --open -d dist watch\""
+        "dev-old": "concurrently \"npm run typewatch\" \"vite\"",
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
     },
     "keywords": [],
     "publishConfig": {
         "access": "public"
     },
-    "dependencies": {},
-    "peerDependencies": {},
+    "dependencies": {
+        "chroma-js": "^2.1.2",
+        "citysdk": "^2.2.0",
+        "dotenv": "^10.0.0",
+        "lodash": "^4.17.21",
+        "maplibre-gl": "^1.15.2",
+        "node-fetch": "^3.1.0"
+    },
     "devDependencies": {
         "@babel/plugin-transform-modules-commonjs": "^7.16.5",
         "@types/jest": "^27.0.3",
@@ -43,12 +51,14 @@
         "eslint-plugin-jest": "^25.3.0",
         "eslint-plugin-prettier": "^4.0.0",
         "gh-pages": "^3.2.3",
+        "googleapis": "^92.0.0",
         "jest": "^27.4.5",
         "jest-environment-jsdom": "^27.4.4",
         "jsdom": "^19.0.0",
         "prettier": "^2.5.1",
         "ts-jest": "^27.1.2",
-        "ts-node": "^10.4.0"
+        "ts-node": "^10.4.0",
+        "vite": "^2.7.6"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -60,5 +70,12 @@
         "tabWidth": 4,
         "semi": false,
         "arrowParens": "avoid"
+    },
+    "quokka": {
+        "env": {
+            "params": {
+                "runner": "--max-old-space-size=8000"
+            }
+        }
     }
 }

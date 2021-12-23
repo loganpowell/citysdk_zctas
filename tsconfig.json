@@ -7,6 +7,7 @@
         "importHelpers": true,
         "noUnusedParameters": true,
         "noUnusedLocals": false,
+        "noEmitOnError": false,
         "rootDir": "src",
         "outDir": "lib",
         "resolveJsonModule": true,
@@ -20,9 +21,5 @@
         "watch": true
     },
     "include": ["src"],
-    "exclude": [
-        "node_modules",
-        "lib",
-        "src/misc"
-    ]
+    "exclude": ["node_modules", "lib", "src/misc"]
 }
