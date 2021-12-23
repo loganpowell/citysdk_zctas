@@ -3,7 +3,7 @@ import chroma from "chroma-js"
 import _ from "lodash"
 
 // === TUNE DATA PARAMETERS === //
-const values = ["B19083_001E"]
+const values = ["2017-09"]
 const valueSelection = 0
 const selection = values[valueSelection]
 
@@ -44,8 +44,9 @@ const quantileMaker = function (vec) {
     const dataScale = chroma.limits(vec, "q", 8)
     const colorScale = chroma
         .scale(["yellow", "navy"])
+        //.scale(["yellow", "navy"])
         .mode("lch")
-        .padding([dataScale[1] * -1 - 1, dataScale[dataScale.length - 1] * -1 - 1])
+    //.padding([dataScale[1] * -1 - 1, dataScale[dataScale.length - 1] * -1 - 1])
     const chromaScale = dataScale.map(function (val) {
         return colorScale(val).hex()
     })
@@ -67,10 +68,10 @@ function timeout(ms) {
 
 const getCensusData = async function (url) {
     const response = await fetch(url)
-    const json = await response.json()
-    const censusGeoJSON = JSON.parse(json)
+    const censusGeoJSON = await response.json()
+    //const censusGeoJSON = JSON.parse(json)
     const dataVec = censusGeoJSON.features.map(function (feature) {
-        return feature.properties[selection]
+        return parseInt(feature.properties[selection])
     })
     const scale = quantileMaker(dataVec)
     return { data: censusGeoJSON, stops: scale }
@@ -78,7 +79,7 @@ const getCensusData = async function (url) {
 
 // ZCTAS
 const DATA_URL =
-    "https://raw.githubusercontent.com/loganpowell/census-js-examples/master/data/ZCTAs-acs-acs5-B19083_001E-GINI.json"
+    "https://raw.githubusercontent.com/loganpowell/citysdk_zctas/master/src/data/geojson.json"
 // COUNTIES
 // const DATA_URL = "https://raw.githubusercontent.com/loganpowell/census-js-examples/master/data/county-acs-acs5-B19083_001E.json"
 
@@ -101,10 +102,11 @@ map.on("style.load", async function () {
             type: "fill",
             source: "census-gini",
             paint: {
-                "fill-color": {
-                    property: selection,
-                    stops: stops,
-                },
+                //"fill-color": {
+                //    property: selection,
+                //    stops: stops,
+                //},
+                "fill-color": "red",
                 // "fill-outline-color": "#f7f7f7",
                 "fill-opacity": 0.8,
             },

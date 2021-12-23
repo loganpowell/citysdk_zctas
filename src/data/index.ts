@@ -19,6 +19,7 @@ async function get_sheet(limit = 14744) {
         spreadsheetId,
 
         // The A1 notation of the values to retrieve.
+        // Data from Zillow hosted on data.world
         range: `Zip_MedianValuePerSqft_AllHomes!A1:H${limit}`, // TODO: for `get`
         //ranges: [
         //    "Zip_MedianValuePerSqft_AllHomes!A1:G14744",
@@ -104,12 +105,27 @@ const example_feature = {
     },
 }
 
+/**
+ * Current stats:
+ * 5 in 35209: 38.8% SSR | 188 PPSF | 24257003 SMt | 9.4 ml2 | Homewood (post device)
+ * 2 in 35213: 76.7% SSR | 209 PPSF | 16437179 SMt | 6.3 ml2 | Mountain Brook (pre device)
+ *
+ * assuming this penetration, we extrapolate that if it was 100% SSR, above the 180 PPSF
+ * threshold, we would get 5/.388 = 12.88 units in 35209, or 12.88 / 9.4 ml2 = 1.37 units/ml2
+ * thus, the calculation for the total addressable market in an area:
+ * 1.37 * SSR% * ml2
+ *
+ * to convert square meters to square miles:
+ * square meters / 2589988
+ */
 //const xform_csv_data =
 const merge = (geojson, for_merge, threshold = { "2017-09": "180" }) => {
     const { type, features, ...rest } = geojson
+    let total_addressable_market = 0
+
     const f = features.reduce((a, c, i, d) => {
         const {
-            properties: { GEOID10, ...props },
+            properties: { GEOID10, DP04_0007PE, ALAND10, ...props },
             ...rest
         } = c
         /**
@@ -131,9 +147,15 @@ const merge = (geojson, for_merge, threshold = { "2017-09": "180" }) => {
             //    gt,
             //    lt,
             //})
+            const TAM = 1.37 * (DP04_0007PE / 100) * (ALAND10 / 2589988)
+            total_addressable_market += TAM
+
             a.push({
                 properties: {
                     GEOID10,
+                    DP04_0007PE,
+                    ALAND10,
+                    TAM,
                     ...match,
                     ...props,
                 },
@@ -142,8 +164,8 @@ const merge = (geojson, for_merge, threshold = { "2017-09": "180" }) => {
         }
         return a
     }, [])
-    const result = { type, features: f, ...rest }
-    //console.log({ result })
+    const result = { total_addressable_market, type, features: f, ...rest }
+    console.log({ total_addressable_market })
     return result
 }
 
@@ -156,8 +178,8 @@ const mergeData = async (limit = 14744) => {
                 geoHierarchy: {
                     "zip-code-tabulation-area": "*",
                 },
-                sourcePath: ["acs", "acs5"],
-                values: ["B19083_001E", "STATE", "PLACE", "TRACT"], // GINI index
+                sourcePath: ["acs", "acs5", "profile"],
+                values: ["DP04_0007PE"], // GINI index
                 //statsKey: "<your key here>",
                 geoResolution: "500k",
             },
