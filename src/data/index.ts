@@ -2,6 +2,7 @@ import citysdk from "citysdk"
 import fetch from "node-fetch"
 import dotenv from "dotenv"
 import { google } from "googleapis"
+import fs from "fs"
 
 dotenv.config()
 
@@ -104,7 +105,7 @@ const example_feature = {
 }
 
 //const xform_csv_data =
-const merge = (geojson, for_merge) => {
+const merge = (geojson, for_merge, threshold = { "2017-09": "180" }) => {
     const { type, features, ...rest } = geojson
     const f = features.reduce((a, c, i, d) => {
         const {
@@ -119,14 +120,26 @@ const merge = (geojson, for_merge) => {
          * }
          */
         const match = for_merge[GEOID10]
-        a.push({
-            properties: {
-                GEOID10,
-                ...match,
-                ...props,
-            },
-            //...rest
-        })
+        const [thrsh, val] = Object.entries(threshold)[0]
+        const gt = parseInt(match && match[thrsh])
+        const lt = parseInt(val)
+        //console.log({ gt, lt, q: gt > lt })
+        //console.log({ thrsh, val, match_thrsh: (match && match[thrsh]) || null })
+        if (match && gt > lt) {
+            //console.log("made it through:", match[thrsh] > val, {
+            //    thrsh,
+            //    gt,
+            //    lt,
+            //})
+            a.push({
+                properties: {
+                    GEOID10,
+                    ...match,
+                    ...props,
+                },
+                ...rest,
+            })
+        }
         return a
     }, [])
     const result = { type, features: f, ...rest }
@@ -157,4 +170,6 @@ const mergeData = async (limit = 14744) => {
     return merge(geojson, zillow)
 }
 
-mergeData().then(r => JSON.stringify(r, null, 2))
+mergeData()
+    .then(r => JSON.stringify(r, null, 2))
+    .then(j => fs.writeFileSync("./src/data/geojson.json", j))
