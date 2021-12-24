@@ -3,7 +3,7 @@ import chroma from "chroma-js"
 import _ from "lodash"
 
 // === TUNE DATA PARAMETERS === //
-const values = ["2017-09"]
+const values = ["2017-09", "TAM", "City", "State", "CountyName"]
 const valueSelection = 0
 const selection = values[valueSelection]
 
@@ -71,10 +71,18 @@ const getCensusData = async function (url) {
     const censusGeoJSON = await response.json()
     //const censusGeoJSON = JSON.parse(json)
     const dataVec = censusGeoJSON.features.map(function (feature) {
-        return parseInt(feature.properties[selection])
+        return parseInt(feature?.properties[selection])
     })
     const scale = quantileMaker(dataVec)
     return { data: censusGeoJSON, stops: scale }
+}
+
+// Random ID maker for each mapbox geocoder-rendered data view to be unique
+const makeid = function () {
+    let text = ""
+    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    for (let i = 0; i < 5; i++) text += possible.charAt(Math.floor(Math.random() * possible.length))
+    return text
 }
 
 // ZCTAS
@@ -88,26 +96,28 @@ const US_URL =
 
 map.on("style.load", async function () {
     getCensusData(DATA_URL).then(async function (result) {
+        const sourceUID = makeid()
+        const layerUID = makeid()
         const data = result.data
         const stops = result.stops
         const ustr = await fetch(US_URL)
         const us = await ustr.json()
         console.table(stops)
-        map.addSource("census-gini", {
+        map.addSource(sourceUID, {
             type: "geojson",
             data: data,
         })
         map.addLayer({
-            id: "zctas",
+            id: layerUID,
             type: "fill",
-            source: "census-gini",
+            source: sourceUID,
             paint: {
                 //"fill-color": {
                 //    property: selection,
                 //    stops: stops,
                 //},
-                "fill-color": "red",
-                // "fill-outline-color": "#f7f7f7",
+                "fill-color": "tomato",
+                "fill-outline-color": "crimson",
                 "fill-opacity": 0.8,
             },
         })
@@ -126,6 +136,22 @@ map.on("style.load", async function () {
                 "line-color": "#ffffff",
                 "line-width": 1,
             },
+        })
+        map.on("mousemove", e => {
+            map.getCanvas().style.cursor = "pointer"
+            const features = map.queryRenderedFeatures(e.point, {
+                layers: [layerUID],
+            })
+            //console.log({ features })
+            document.getElementById("geo-name").innerHTML =
+                "ZIP: " + features[0]?.properties?.GEOID10
+            document.getElementById("geo-value").innerHTML = `
+                <ul>
+                  ${values
+                      .map(each => `<li>${each}: ${features[0]?.properties[each]}</li>`)
+                      .join("")}
+                </ul>
+              `
         })
     })
 })

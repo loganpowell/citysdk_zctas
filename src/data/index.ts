@@ -123,7 +123,7 @@ const merge = (geojson, for_merge, threshold = { "2017-09": "180" }) => {
     const { type, features, ...rest } = geojson
     let total_addressable_market = 0
 
-    const f = features.reduce((a, c, i, d) => {
+    const f = features.reduce((a, c) => {
         const {
             properties: { GEOID10, DP04_0007PE, ALAND10, ...props },
             ...rest
@@ -147,7 +147,7 @@ const merge = (geojson, for_merge, threshold = { "2017-09": "180" }) => {
             //    gt,
             //    lt,
             //})
-            const TAM = 1.37 * (DP04_0007PE / 100) * (ALAND10 / 2589988)
+            const TAM = ~~(1.37 * DP04_0007PE * (ALAND10 / 2589988)) / 100
             total_addressable_market += TAM
 
             a.push({

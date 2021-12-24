@@ -10,7 +10,6 @@
     "repository": "https://github.com/loganpowell/citysdk_zctas",
     "homepage": "https://github.com/loganpowell/citysdk_zctas",
     "scripts": {
-        "pages": "npm run types && npm run jsdoc",
         "clean": "rm -rf ./lib & rm -rf ./dist &  rm -rf .cache",
         "madge": "madge --circular lib/",
         "typewatch": "tsc --project tsconfig.json",
@@ -24,7 +23,8 @@
         "git": "npm run ncu && git add . && git commit -m",
         "dev-old": "concurrently \"npm run typewatch\" \"vite\"",
         "dev": "vite",
-        "build": "tsc && vite build",
+        "build": "vite build",
+        "pages": "npm run build && rm -rf ./docs/* && cp -r ./dist/* ./docs/",
         "preview": "vite preview"
     },
     "keywords": [],
